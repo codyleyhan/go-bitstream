@@ -39,7 +39,7 @@ func NewReader(r io.Reader) *BitReader {
 // ReadBit returns the next bit from the stream, reading a new byte from the underlying reader if required.
 func (b *BitReader) ReadBit() (Bit, error) {
 	if b.count == 0 {
-		if n, err := b.r.Read(b.b[:]); n != 1 || (err != nil && err != io.EOF) {
+		if n, err := b.r.Read(b.b[:]); n != 1 || err != nil {
 			return Zero, err
 		}
 		b.count = 8
